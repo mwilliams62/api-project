@@ -1,6 +1,5 @@
 //ddcfcefb488ad1af
 
-const wunderURL = 'http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/conditions/q/'
 
 let map;
 function initMap() {
@@ -36,7 +35,6 @@ function addMarker(location, map) {
     var marker = new google.maps.Marker({
         position:location,
         map:map,
-        draggable: true,
     })
 }
 
@@ -58,10 +56,12 @@ function getDataFromApi(latLng, callback) {
         url:"http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/tide/q/48.693351,-122.610278.json",
         dataType: "jsonp",
         success :  function(parsed_json) {
+            console.log(parsed_json);
             let results = [];
             for(var i = 0; i < parsed_json.tide.tideSummary.length; i++) {
-                if ((parsed_json.tide.tideSummary[i].data.type === "Low Tide") || (parsed_json.tide.tideSummary[i].data.type === "High Tide")) {
-                    results.push(i);
+                if ((parsed_json.tide.tideSummary[i].data.type === "Low Tide") || (parsed_json.tide.tideSummary[i].data.type === "High Tide")
+                   || (parsed_json.tide.tideSummary[i].data.type = "Sunrise") || (parsed_json.tide.tideSummary[i].data.type = "Sunset")) {
+                    results.push(parsed_json.tide.tideSummary[i]);
                     
                 }
             
@@ -77,7 +77,7 @@ function getDataFromApi(latLng, callback) {
             // // let tideTime = parsed_json['tideSummary']['pretty'];
             // // console.log(tideType+": "+tideHeight+" ( "+tideTime+" )")
             // console.log(tideLocation);
-             console.log(parsed_json);
+            // console.log(parsed_json);
         }
     })
 }
