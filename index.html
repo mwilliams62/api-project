@@ -8,23 +8,27 @@
         <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Roboto|Shadows+Into+Light" rel="stylesheet">
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="float-grid.css">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>   
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
         
         <style>
             /* Always set the map height explicitly to define the size of the div
              * element that contains the map. */
+
+
             #map {
               height:80%;
               width: 80%;
               vertical-align: middle;
               text-align: center;
             }
+          
             /* Optional: Makes the sample page fill the window. */
             html, body {
               height: 100%;
               margin: 0;
               padding: 0;
-            }
+            } 
           </style>
         </head>
         <body>
@@ -34,12 +38,47 @@
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: 48.732080, lng: -122.553614},
-                zoom: 11
+                zoom: 12
               });
-            }
+            const loc_port = {lat: 48.693351, lng: -122.610278};  
+            const mark_port = new google.maps.Marker({
+              position: loc_port,
+              map:map,
+              customInfo:"Marker1",
+              title:"Portage Island"
+            });
+            
+            const loc_bellBay = {lat: 48.752142, lng: -122.504546};
+            const mark_bellBay = new google.maps.Marker({
+                position: loc_bellBay,
+                map:map,
+                customInfo:"Marker2",
+                title:"Squalicum Harbor"
+            });
+}
           </script>
-          <!-- <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=Bellingham+Bay,WA&zoom=10&size=400x400&scale=2&key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0" alt="Bellingham Map"> -->
+          <!-- <script>
+            jQuery(document).ready(function($) {
+              $.ajax({
+              url : "http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/conditions/q/48.693351,-122.610278.json",
+              dataType : "jsonp",
+              success : function(parsed_json) {
+              var location = parsed_json['location']['city'];
+              var temp_f = parsed_json['current_observation']['temp_f'];
+              var wind_spd = parsed_json['current_observation']['wind_mph'];
+              var wind_dir = parsed_json['current_observation']['wind_dir'];
+              alert("Current temperature in " + location + " is: " + temp_f+" and the wind is blowing from the "+wind_dir+" at "+wind_spd+" mph");
+              }
+              });
+            });      
+            </script> -->
+
+          <!-- <img class="map" src="https://maps.googleapis.com/maps/api/staticmap?center=Bellingham+Bay,WA&zoom=10&size=400x400&scale=2&key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0" alt="Bellingham Map">-->
           
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0&callback=initMap" async defer></script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0&callback=initMap" async defer></script> 
+          <div class="js-click">
+            <button type="button">Click Here</button>
+          </div>
+          <script type="text/javascript" src="index.js"></script>
         </body>
       </html>
