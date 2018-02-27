@@ -1,6 +1,27 @@
 //ddcfcefb488ad1af
 
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 48.732080, lng: -122.553614},
+    zoom: 12
+  });
+const loc_port = {lat: 48.693351, lng: -122.610278};  
+const mark_port = new google.maps.Marker({
+  position: loc_port,
+  map:map,
+  customInfo:"Marker1",
+  title:"Portage Island"
+});
 
+const loc_bellBay = {lat: 48.752142, lng: -122.504546};
+const mark_bellBay = new google.maps.Marker({
+    position: loc_bellBay,
+    map:map,
+    customInfo:"Marker2",
+    title:"Squalicum Harbor"
+});
+}
 
 function getDataFromApi() {
     $.ajax({
