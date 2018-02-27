@@ -17,12 +17,17 @@
         </head>
         <body>
           <div id="map"></div>
+          <div class="js-conditions"></div>
+          <div class="js-tides"></div>
           <script>
           </script>
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0&callback=initMap" async defer></script> 
-          <div class="js-click">
+          <!-- <div class="js-click">
             <button type="button">Click Here</button>
-          </div>
+            <input onclick="clearMarkers();" type=button value="Hide Markers">
+            <input onclick="showMarkers();" type=button value="Show All Markers">
+            <input onclick="deleteMarkers();" type=button value="Delete Markers">
+          </div> -->
           <script type="text/javascript" src="index.js"></script>
         </body>
       </html>
