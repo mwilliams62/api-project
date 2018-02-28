@@ -1,6 +1,5 @@
 //ddcfcefb488ad1af
 
-
 let map;
 let markers = [];
 function initMap() {
@@ -8,7 +7,7 @@ function initMap() {
     center: {lat: 48.732080, lng: -122.553614},
     zoom: 12
   });
-// const loc_port = {lat: 48.693351, lng: -122.610278};  
+// const loc_port = {lat: 48.693351, lng: -122.610278};
 // const mark_port = new google.maps.Marker({
 //   position: loc_port,
 //   map:map,
@@ -41,7 +40,8 @@ google.maps.event.addListener(map, 'click', function(event) {
     const lat = marker.getPosition().lat();
     const lng = marker.getPosition().lng();
     const latLong = lat+','+lng
-    getDataFromApi(latLong);
+    getTideDataFromApi(latLong, displayTideResults);
+    getObservationDataFromApi(latLong, displayObservationResults);
     console.log(latLong);
 }
 
@@ -58,52 +58,65 @@ function setMapOnAll(map) {
     markers = [];
   }
 
-function getDataFromApi(latLong) {  
+function getObservationDataFromApi(latLong, callback) {
     const conditionsUrl =`http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/conditions/q/${latLong}.json`;
     $.ajax({
         url: conditionsUrl,
         dataType : "jsonp",
-        success : function(parsed_obs_json) {
-            let obs = [];
-            console.log(parsed_obs_json);
-            obs.push(parsed_obs_json.current_observation);
-            console.log(obs);
-            let location = parsed_obs_json['location']['city'];
-            let temp_f = parsed_obs_json['current_observation']['temp_f'];
-            let wind_spd = parsed_obs_json['current_observation']['wind_mph'];
-            let wind_dir = parsed_obs_json['current_observation']['wind_dir'];
-            console.log("Current temperature in " + location + " is: " + temp_f+" and the wind is blowing from the "+wind_dir+" at "+wind_spd+" mph");
-            //console.log(parsed_json);
-        }
-        });
+        success : callback
+    });
+}
+
+function getTideDataFromApi(latlong, callback) {
     $.ajax({
         url:"http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/tide/q/48.693351,-122.610278.json",
         dataType: "jsonp",
-        success :  function(parsed_tide_json) {
-            console.log(parsed_tide_json);
-            let tides = [];
-            for(var i = 0; i < parsed_tide_json.tide.tideSummary.length; i++) {
-                if ((parsed_tide_json.tide.tideSummary[i].data.type === "Low Tide") || (parsed_tide_json.tide.tideSummary[i].data.type === "High Tide")) {
-                    tides.push(parsed_tide_json.tide.tideSummary[i]);   
-                }
-            }
-            displayTideResults(tides);
-            console.log(tides);
-            console.log(tides[0].data.type+" will be "+tides[0].data.height+" at "+tides[0].date.pretty);
-        }
+        success :  callback
     })
 }
 
-function renderResult(result) {
-    console.log(result);
+function renderTideResult(tideResult) {
+    console.log(tideResult);
+    return `
+    <p>${tideResult.data.type} will be ${tideResult.data.height} at ${tideResult.date.pretty}</p>`
+}
+
+function renderObservationResult(obsResult) {
+    return `<p>Observations:</p>
+    <ul>
+        <li>Temp is ${obsResult.temp_f}</li>
+        <li>Wind is ${obsResult.wind_mph} from the ${obsResult.wind_dir}</li>
+        <li>Wind ${obsResult.wind_string}</li>
+        <li>Feels like: ${obsResult.feelslike_f}</li>
+    </ul> `
 }
 
 function displayTideResults(info) {
     console.log(info);
-    renderResult(info);
-    $('.js-tides').html(info);
-    
+    const tides = [];
+    for(var i = 0; i < info.tide.tideSummary.length; i++) {
+        if ((info.tide.tideSummary[i].data.type === "Low Tide") || (info.tide.tideSummary[i].data.type === "High Tide")) {
+            tides.push(info.tide.tideSummary[i]);
+        }
+    }
+    const tideSet = tides.slice(0,4);
+    const tidepool = tideSet.map((item, index) =>
+        renderTideResult(item));
+    $('.js-tides').html(tidepool);
+    // console.log(tides);
+     console.log(tidepool);
+    // console.log(tideSet);
 }
+
+function displayObservationResults(info) {
+    console.log(info);
+    const obs = [];
+    obs.push(info.current_observation);
+    const obsSet = obs.map((item, index) =>
+        renderObservationResult(item));
+    $('.js-observations').html(obsSet);
+}
+
 
 function listenSubmit() {
     $('.js-click').on('click', event => {
@@ -116,7 +129,7 @@ function listenSubmit() {
 
 
 function getWeather() {
-    listenSubmit();
+    // listenSubmit();
     //initMap();
 }
 

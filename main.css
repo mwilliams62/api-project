@@ -20,3 +20,13 @@ html, body {
     padding: 0;
     background-color: navy;
 } 
+
+.js-observations {
+    color: white;
+}
+
+.js-tides {
+    color: yellow;
+    font-weight: bold;
+}
+
