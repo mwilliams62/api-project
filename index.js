@@ -78,17 +78,22 @@ function getTideDataFromApi(latlong, callback) {
 function renderTideResult(tideResult) {
     console.log(tideResult);
     return `
-    <p>${tideResult.data.type} will be ${tideResult.data.height} at ${tideResult.date.pretty}</p>`
+    <tr>
+        <td>${tideResult.data.type}: ${tideResult.data.height}</td>
+        <td>${tideResult.date.mon}/${tideResult.date.mday} ${tideResult.date.hour}:${tideResult.date.min}</td>
+    </tr> `
 }
 
 function renderObservationResult(obsResult) {
-    return `<p>Observations:</p>
-    <ul>
-        <li>Temp is ${obsResult.temp_f}</li>
-        <li>Wind is ${obsResult.wind_mph} from the ${obsResult.wind_dir}</li>
-        <li>Wind ${obsResult.wind_string}</li>
-        <li>Feels like: ${obsResult.feelslike_f}</li>
-    </ul> `
+    return `
+    <tr>
+        <td>Summary: ${obsResult.weather}</td>
+        <td>${obsResult.temp_f}*F, Feels like ${obsResult.feelslike_f}*F</td>
+    </tr>
+    <tr>
+        <td>Wind ${obsResult.wind_string}</td>
+        <td></td>
+    </tr> `
 }
 
 function displayTideResults(info) {
@@ -100,12 +105,23 @@ function displayTideResults(info) {
         }
     }
     const tideSet = tides.slice(0,4);
+    
+    const sun = [];
+    for(var i = 0; i < info.tide.tideSummary.length; i++) {
+        if ((info.tide.tideSummary[i].data.type === "Sunset") || (info.tide.tideSummary[i].data.type === "Sunrise")) {
+            sun.push(info.tide.tideSummary[i]);
+        }
+    }
+    console.log(sun);
+    const sunSlice = sun.slice(0,2);
+    for(var i = 0; i < sunSlice.length; i++) {
+        tideSet.push(sunSlice[i]);
+    }
+    console.log(tideSet);
     const tidepool = tideSet.map((item, index) =>
         renderTideResult(item));
     $('.js-tides').html(tidepool);
-    // console.log(tides);
-     console.log(tidepool);
-    // console.log(tideSet);
+    console.log(tidepool);
 }
 
 function displayObservationResults(info) {
@@ -115,24 +131,16 @@ function displayObservationResults(info) {
     const obsSet = obs.map((item, index) =>
         renderObservationResult(item));
     $('.js-observations').html(obsSet);
+
+    const modal = document.getElementById('result-modal')
+    const span = document.getElementsByClassName("close")[0]
+    modal.style.display="block";
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
 
-
-function listenSubmit() {
-    $('.js-click').on('click', event => {
-        event.preventDefault();
-        getDataFromApi();
-        console.log('button was clicked');
-    })
-}
-
-
-
-function getWeather() {
-    // listenSubmit();
-    //initMap();
-}
-
-$(getWeather);
 
 

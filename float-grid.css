@@ -1,6 +1,10 @@
 * {
     box-sizing: border-box;
   }
+
+  body {
+    margin-top: 50px;
+  }
   
   .row {
     max-width: 1000px;
@@ -28,6 +32,11 @@
   /* Mobile defaults */
   .map, .col-3, .col-4, .col-6, .col-12 {
     width: 100%;
+    margin: 10%;
+  }
+
+  .map {
+    text-align: center;
   }
 
 
