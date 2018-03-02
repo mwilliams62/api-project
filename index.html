@@ -18,15 +18,17 @@
         <body>
             <div id="map"></div>
             <div id="result-modal">
-              <span class="close">&times;</span>
-              <div class="observations">
-                <table class="js-observations"></table>
-              </div>
-              <div class="tide">
-                <table class="js-tides"></table>
-              </div>
-            </div>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0&callback=initMap" async defer></script> 
-            <script type="text/javascript" src="index.js"></script>
+              <div class="modal-content hidden">
+                <span class="close">&times;</span>
+                <div class="observations">
+                   <table class="js-observations"></table>
+                </div>
+                <div class="tide">
+                  <table class="js-tides"></table>
+                </div>
+             </div>
+          </div>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbrjka1VtKd3Pm8Vqtqze2n32vqQsdrO0&callback=initMap" async defer></script> 
+          <script type="text/javascript" src="index.js"></script>
         </body>
       </html>

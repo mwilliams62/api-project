@@ -82,27 +82,25 @@ function renderTideResult(tideResult) {
     $('.map').addClass('hidden');
     return `
         <tr>
-            <td>${tideResult.data.type}: ${tideResult.data.height}</td>
-            <td>${tideResult.date.mon}/${tideResult.date.mday} ${tideResult.date.hour}:${tideResult.date.min}</td>
+            <td>${tideResult.data.type}: ${tideResult.data.height} ${tideResult.date.mon}/${tideResult.date.mday} ${tideResult.date.hour}:${tideResult.date.min}</td>
         </tr>`
 }
 
 function renderObservationResult(obsResult) {
     return `
-        <table>
             <tr>
-                <th colspan="2"><h2>${obsResult.display_location.full}</h2>
+                <th><h2>${obsResult.display_location.full}</h2>
                 </th>
             </tr>    
             <tr>
                 <td>Summary: ${obsResult.weather}</td>
+            </tr>
+            <tr>
                 <td>${obsResult.temp_f}*F, Feels like ${obsResult.feelslike_f}*F</td>
             </tr>
             <tr>
                 <td>Wind ${obsResult.wind_string}</td>
-                <td></td>
-            </tr>
-        </table> `
+            </tr>`
 }
 
 function displayTideResults(info) {
@@ -136,12 +134,15 @@ function displayObservationResults(info) {
         renderObservationResult(item));
     $('.js-observations').html(obsSet);
     const modal = document.getElementById('result-modal')
-    const span = document.getElementsByClassName("close")[0]
-    //modal.style.display="block";
+    const span = document.getElementsByClassName("close")
+    modal.style.display="block";
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+    span.onclick = function(event) {
+        modal.style.display = "none"
     }
 }
 

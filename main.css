@@ -2,11 +2,7 @@
     box-sizing: border-box;
 }
 
- /* Always set the map height explicitly to define the size of the div
-             * element that contains the map. */
-
-
- #map {
+  #map {
     height:80%;
     width: 80%;
     vertical-align: middle;
@@ -24,18 +20,18 @@ html, body {
 .observations {
     color: white;
 } 
-/* .js-observations {
-    color: white;
-} */
 
-/* .js-tides {
-    color: yellow;
-    font-weight: bold;
-} */
+.observations h2 {
+    color: darkblue;
+}
+
+.hidden {
+    display: none;
+}
 
 /********************MODAL******************************************/
 /* The Modal (background) */
-.modal {
+.result-modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -50,11 +46,12 @@ html, body {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #4037be;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    table-layout: fixed;
 }
 
 /* The Close Button */
@@ -79,11 +76,13 @@ table {
     max-width: 100%;
     color: black;
     margin: 0 auto;
+    table-layout: fixed;
 }
 td {
         padding: 8px 16px;
         border-top: none;
-        border-bottom: 1px solid slategray;
+        max-width: 50px;
+        /* border-bottom: 1px solid slategray; */
     }
 
     thead th {
