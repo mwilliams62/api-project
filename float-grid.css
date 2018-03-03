@@ -39,13 +39,22 @@
     text-align: center;
   }
 
+.logo {
+  height: 50px;
+  width:  50px;
+  float: left;
+}
+
+table.js-observations {
+  margin-top: 0;
+}
 
   
   /* Non-mobile, grid */
   @media only screen and (min-width: 640px) {
   
     body {
-      margin-top: 100px;
+      margin-top: 40px;
     }
    
     .col-3 {
@@ -67,10 +76,22 @@
     .col-12 {
         width: 100%;
     }
+  
+  .logo {
+    height: 75px;
+    width: 75px;
+    float: left;
   }
+div.header {
+  margin: 0 10%;
+}
+
   
   .map {
     margin: 0 auto;
     width: 80%;
   }
-  
+  table.js-observations {
+    margin-top: 10px;
+}
+}
