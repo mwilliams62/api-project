@@ -11,6 +11,7 @@ function initMap() {
     addMarker(event.latLng, map);
 });
 }
+//Changed user flow, no longer need to pre-load these markers
 // const loc_port = {lat: 48.693351, lng: -122.610278};
 // const mark_port = new google.maps.Marker({
 //   position: loc_port,
@@ -30,7 +31,7 @@ function initMap() {
 // });
 
 
-
+//add a marker at the clicked location, use that lat/lng in called api
  function addMarker(location, map) {
     const marker = new google.maps.Marker({
         position:location,
@@ -58,6 +59,7 @@ function setMapOnAll(map) {
     markers = [];
   }
 
+//use the lat/lng in api call for weather data
 function getObservationDataFromApi(latLong, callback) {
     const conditionsUrl =`http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/conditions/q/${latLong}.json`;
     $.ajax({
@@ -67,25 +69,25 @@ function getObservationDataFromApi(latLong, callback) {
     });
 }
 
+// use lat/lng in api call for tide data
 function getTideDataFromApi(latlong, callback) {
     $.ajax({
-        url:"http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/tide/q/48.693351,-122.610278.json",
+        url:`http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/tide/q/${latlong}.json`,
         dataType: "jsonp",
         success :  callback
     })
 }
 
+//show the modal, generate reuring rows for tide and sunrise/sunset data
 function renderTideResult(tideResult) {
     $('.modal-content').removeClass('hidden');
-    $('.result-modal').removeClass('hidden');
-
-    $('.map').addClass('hidden');
     return `
         <tr>
             <td>${tideResult.data.type}: ${tideResult.data.height} ${tideResult.date.mon}/${tideResult.date.mday} ${tideResult.date.hour}:${tideResult.date.min}</td>
         </tr>`
 }
 
+//generate html for obervations
 function renderObservationResult(obsResult) {
     return `
             <tr>
@@ -93,17 +95,25 @@ function renderObservationResult(obsResult) {
                 </th>
             </tr>    
             <tr>
-                <td>Summary: ${obsResult.weather}</td>
-            </tr>
-            <tr>
-                <td>${obsResult.temp_f}*F, Feels like ${obsResult.feelslike_f}*F</td>
+                <td>${obsResult.weather} and ${obsResult.temp_f}*F</td>
             </tr>
             <tr>
                 <td>Wind ${obsResult.wind_string}</td>
+            </tr>
+            <tr>
+                <td>Feels like ${obsResult.feelslike_f}*F</td>
+            </tr>
+            <tr>
+                <td>Visibility: ${obsResult.visibility_mi} miles</td>
+            </tr>
+            <tr>
+                <td>Barometer: ${obsResult.pressure_in} ${obsResult.pressure_trend}</td>
             </tr>`
 }
 
+//push the tide results to an array (parse next 4 high/low tide values, parse next sunrise and sunset, combine in one array)
 function displayTideResults(info) {
+    console.log(info);
     const tides = [];
     for(var i = 0; i < info.tide.tideSummary.length; i++) {
         if ((info.tide.tideSummary[i].data.type === "Low Tide") || (info.tide.tideSummary[i].data.type === "High Tide")) {
@@ -126,6 +136,7 @@ function displayTideResults(info) {
     $('.js-tides').html(tidepool);
 }
 
+//push observations into array, map to html, attempt modal
 function displayObservationResults(info) {
     console.log(info);
     const obs = [];
@@ -134,6 +145,7 @@ function displayObservationResults(info) {
         renderObservationResult(item));
     $('.js-observations').html(obsSet);
     const modal = document.getElementById('result-modal')
+    const modalTable = document.getElementById('modal-content')
     const span = document.getElementsByClassName("close")
     modal.style.display="block";
     window.onclick = function(event) {
@@ -142,7 +154,8 @@ function displayObservationResults(info) {
         }
     }
     span.onclick = function(event) {
-        modal.style.display = "none"
+        modalTable.style.display = "none";
+        console.log("close was clicked");
     }
 }
 
