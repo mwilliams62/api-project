@@ -45,9 +45,7 @@
   float: left;
 }
 
-table.js-observations {
-  margin-top: 0;
-}
+
 
   
   /* Non-mobile, grid */
@@ -91,7 +89,5 @@ div.header {
     margin: 0 auto;
     width: 80%;
   }
-  table.js-observations {
-    margin-top: 10px;
-}
+
 }
