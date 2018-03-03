@@ -13,6 +13,7 @@ h1, h3 {
     vertical-align: middle;
     text-align: center;
     margin: 0 auto;
+    border-radius: 20px;
 }
 
 
@@ -30,6 +31,7 @@ html, body {
 
 .observations h2 {
     color: darkblue;
+    
 }
 
 .hidden {
@@ -58,15 +60,18 @@ html, body {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
-    table-layout: fixed;
+    border-radius: 20px;
 }
 
 /* The Close Button */
 .close {
     color: #aaa;
-    float: right;
+    /* float: right; */
     font-size: 28px;
     font-weight: bold;
+    display: block;
+    text-align: right;
+    margin: 0
 }
 
 .close:hover,
@@ -83,7 +88,6 @@ table {
     max-width: 100%;
     color: black;
     margin: 0 auto;
-    table-layout: fixed;
 }
 td {
         padding: 8px 16px;
@@ -119,7 +123,7 @@ td {
 }
 
 table.js-observations {
-margin-top: 0;
+margin-top: 0;  
 }
 
 
