@@ -40,7 +40,7 @@ function setMapOnAll(map) {
 
 //use the lat/lng in api call for weather data
 function getObservationDataFromApi(latLong, callback) {
-    const conditionsUrl =`http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/conditions/q/${latLong}.json`;
+    const conditionsUrl =`https://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/conditions/q/${latLong}.json`;
     $.ajax({
         url: conditionsUrl,
         dataType : "jsonp",
@@ -51,7 +51,7 @@ function getObservationDataFromApi(latLong, callback) {
 // use lat/lng in api call for tide data
 function getTideDataFromApi(latlong, callback) {
     $.ajax({
-        url:`http://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/tide/q/${latlong}.json`,
+        url:`https://api.wunderground.com/api/ddcfcefb488ad1af/geolookup/tide/q/${latlong}.json`,
         dataType: "jsonp",
         success :  callback
     })
