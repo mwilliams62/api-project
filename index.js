@@ -1,5 +1,3 @@
-//ddcfcefb488ad1af
-
 let markers = [];
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -11,25 +9,6 @@ function initMap() {
     addMarker(event.latLng, map);
 });
 }
-//Changed user flow, no longer need to pre-load these markers
-// const loc_port = {lat: 48.693351, lng: -122.610278};
-// const mark_port = new google.maps.Marker({
-//   position: loc_port,
-//   map:map,
-//   customInfo:"Marker1",
-//   title:"Portage Island",
-//   clickable:true,
-// });
-
-// const loc_bellBay = {lat: 48.752142, lng: -122.504546};
-// const mark_bellBay = new google.maps.Marker({
-//     position: loc_bellBay,
-//     map:map,
-//     customInfo:"Marker2",
-//     title:"Squalicum Harbor",
-//     clickable: true,
-// });
-
 
 //add a marker at the clicked location, use that lat/lng in called api
  function addMarker(location, map) {
@@ -78,7 +57,7 @@ function getTideDataFromApi(latlong, callback) {
     })
 }
 
-//show the modal, generate reuring rows for tide and sunrise/sunset data
+//show the modal, generate rows for tide and sunrise/sunset data
 function renderTideResult(tideResult) {
     $('.modal-content').removeClass('hidden');
     return `
@@ -155,7 +134,6 @@ function displayObservationResults(info) {
     }
     $('.close').click('span', function(event) {
         $('.modal-content').addClass('hidden');
-        //modalTable.style.display = "none";
         console.log("close was clicked");
     })
 }
