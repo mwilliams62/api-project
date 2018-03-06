@@ -55,12 +55,20 @@ html, body {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #4037be;
-    margin: 15% auto; /* 15% from the top and centered */
+    background-color: rgb(38,38,43);
+    background-color: rgba(38,38,43,0.9);
+    margin: 6em auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    border: 1px solid rgb(41, 39, 39);
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 100%;
     border-radius: 20px;
+    left: 0;
+    top: 1.5em;
+    position: absolute;
+    z-index: 1;
+    overflow: auto;
+
 }
 
 /* The Close Button */

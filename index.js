@@ -153,10 +153,11 @@ function displayObservationResults(info) {
             modal.style.display = "none";
         }
     }
-    span.onclick = function(event) {
-        modalTable.style.display = "none";
+    $('.close').click('span', function(event) {
+        $('.modal-content').addClass('hidden');
+        //modalTable.style.display = "none";
         console.log("close was clicked");
-    }
+    })
 }
 
 
