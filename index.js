@@ -134,7 +134,6 @@ function displayObservationResults(info) {
     }
     $('.close').click('span', function(event) {
         $('.modal-content').addClass('hidden');
-        console.log("close was clicked");
     })
 }
 

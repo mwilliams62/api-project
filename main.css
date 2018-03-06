@@ -24,6 +24,7 @@ html, body {
     margin: 50 auto;
     padding: 0;
     background-color: navy;
+    font-family: 'Roboto', sans-serif;
 } 
 .observations {
     color: white;
@@ -84,7 +85,7 @@ html, body {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #eee7e7;
     text-decoration: none;
     cursor: pointer;
 }
@@ -96,6 +97,7 @@ table {
     max-width: 100%;
     color: black;
     margin: 0 auto;
+    overflow: hidden;
 }
 td {
         padding: 8px 16px;
@@ -122,7 +124,7 @@ table tr:nth-child(2n) {
 }
 
 table tr:nth-child(2n + 1) {
-        background-color: rgb(199, 194, 194);
+        background-color: rgb(232, 244, 248);
 }
 
 
@@ -132,6 +134,13 @@ td {
 
 table.js-observations {
 margin-top: 0;  
+border-top-right-radius: 20px;
+border-top-left-radius:  20px;
+}
+
+table.js-tides {
+    border-bottom-left-radius:  20px;
+    border-bottom-right-radius: 20px;
 }
 
 
