@@ -4,7 +4,7 @@ This app is serves as a quick means of checking current weather and tide conditi
 Weather and tide information are critical data points when determining if, when, and where to go fishing or crabbing.  
 
 
-|## User Flow||
+## User Flow
 |Action|Related Image|
 :-------|:----------:|
 #### The app opens to a map centered on my local area|<img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/main-page.png" alt="map" height="300" width="300">|
