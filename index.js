@@ -23,7 +23,6 @@ function initMap() {
     const latLong = lat+','+lng
     getTideDataFromApi(latLong, displayTideResults);
     getObservationDataFromApi(latLong, displayObservationResults);
-    console.log(latLong);
 }
 
 // Sets the map on all markers in the array.
@@ -93,7 +92,6 @@ function renderObservationResult(obsResult) {
 
 //push the tide results to an array (parse next 4 high/low tide values, parse next sunrise and sunset, combine in one array)
 function displayTideResults(info) {
-    console.log(info);
     const tides = [];
     for(var i = 0; i < info.tide.tideSummary.length; i++) {
         if ((info.tide.tideSummary[i].data.type === "Low Tide") || (info.tide.tideSummary[i].data.type === "High Tide")) {
@@ -118,7 +116,6 @@ function displayTideResults(info) {
 
 //push observations into array, map to html, attempt modal
 function displayObservationResults(info) {
-    console.log(info);
     const obs = [];
     obs.push(info.current_observation);
     const obsSet = obs.map((item, index) =>

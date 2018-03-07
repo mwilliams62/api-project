@@ -41,9 +41,6 @@ html, body {
     background-color: navy;
     font-family: 'Roboto', sans-serif;
 } 
-.observations {
-    color: white;
-} 
 
 .observations h2 {
     color: darkblue;
@@ -121,19 +118,6 @@ td {
     font-family: 'Ropa Sans', sans-serif;
     font-size: 20px;
     /* border-bottom: 1px solid slategray; */
-    }
-
-    thead th {
-        font-size: 14px;
-        font-weight: 600;
-        color: darkblue;
-        vertical-align: bottom;
-}
-
-tbody {
-        font-size: 15px;
-        border-left: slategray;
-        border-right: slategray;
 }
 
 table tr:nth-child(2n) {
