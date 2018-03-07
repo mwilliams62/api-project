@@ -45,6 +45,12 @@
   float: left;
 }
 
+.logo-right {
+  height: 50px;
+  width: 50px;
+  float: right;
+}
+
 
 
   
@@ -61,18 +67,18 @@
   
     /* 4 columns */
     .col-4 {
-        width: 33.333333%;
+      width: 33.333333%;
     }
   
     /* 6 columns */
     .col-6 {
-        width: 100%;
-        padding: 0;
+      width: 100%;
+      padding: 0;
     }
   
     /* 12 columns */
     .col-12 {
-        width: 100%;
+      width: 100%;
     }
   
   .logo {
@@ -80,8 +86,14 @@
     width: 75px;
     float: left;
   }
-div.header {
-  margin: 0 10%;
+
+  .logo-right {
+    height: 75px;
+    width: 75px;
+    float: right;
+  }
+  div.header {
+    margin: 0 10%;
 }
 
   
