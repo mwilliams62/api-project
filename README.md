@@ -21,7 +21,7 @@ Weather and tide information are critical data points when determining if, when,
   <li>jQuery</li>
 </ul>
 
-### Web Services
+## Web Services
 <ul>
   <li>Google Maps API</li>
   <li>Wunderground Geolocation Conditions API</li>
