@@ -6,8 +6,8 @@ Weather and tide information are critical data points when determining if, when,
 
 ## User Flow
 
-The app opens to a map centered on my local area
-<img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/main-page.png" alt="map" height="100" width="100">
+The app opens to a map centered on my local area<br>
+<img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/main-page.png" alt="map" height="200" width="200">
 
-The user selects the location for which they'd like a weather, tide, and sunrise/sunset report by clicking on the map
-<img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/marker.png" alt="marker">
+The user selects the location <img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/marker.png" alt="marker"> for which they'd like a weather, tide, and sunrise/sunset report by clicking on the map
+
