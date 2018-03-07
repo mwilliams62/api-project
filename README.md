@@ -13,10 +13,10 @@ Weather and tide information are critical data points when determining if, when,
 <img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/marker.png" alt="marker">  
 
 #### The results are displayed in a table within a modal on top of the map
-<img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/results.png" alt="results" height="300" width="500">
+<img src="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/results.png" alt="results" height="300" width="700">
 
 #### The user exits the results modal using the close or 'X' button. 
-<img scr="https://github.com/mwilliams62/hows-the-bay-today/blob/master/images/close-modal.png" alt="close" height="100" width="100">
+<img scr="hows-the-bay-today/images/close-modal.png" alt="close" height="100" width="100">
 
 The user can then exit the application or select another location for new report
 
